@@ -8,12 +8,19 @@ This repository contains
 Based on the engineering, productivity and in-progress skills of Matt Pocock: https://github.com/mattpocock/skills
 
 
-## Matt Pocock's process is an Agentic TDD (?)
+## Matt Pocock's process is an Agentic TDD
 
-## Uncle Bob's process is an Agentic BDD (?)
+1. grill-with-docs or wayfinder
+2. to-spec
+3. to-tickets
+4. implement
+5. tdd
+6. code-review
+
+## Uncle Bob's process is an Agentic BDD with enforced QA steps
 
 1. **Specifier** takes a human-written requirement document and translates to scenarios written in gherkin (high-level acceptance tests) and QA procedure implementing the system test (i.e. tests using the UI).
-2. **Coder** implements the stories described in gherkin and implements the test scenarios as well. Also it writes unit tests. It main focus is functionality, not quality.
+2. **Coder** implements the stories described in gherkin and implements the test scenarios together with unit tests. Its main focus is functionality, not quality.
 3. **Cleaner** use static code analysis tools like CRAP score, and code-review to improve the code quality.
 4. **Hardener** runs the mutation testing until there is 100% code coverage is achieved. Could be a long process.
 5. **QA Agent** takes a QA procedure (system tests) and implements it as an executable script. The result must be deterministic.
