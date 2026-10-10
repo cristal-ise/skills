@@ -1,10 +1,10 @@
 ---
-name: implement-afk
+name: implement-ticket
 description: "Implement one ticket without user intervention."
 ---
 
 ## Steps
-Do not deviate from these steps, you must use subagent when instructed.
+Do not deviate from this sequence.
 
 1. Check the current branch and stop in case anything is changed or new and ask the user to resolve it.
 2. Check if the current branch is already named after the ticket or spec. If not, switch to develop and create a new branch named after the ticket or spec following the gitflow convention. The name shall also include the ticket or spec number.
