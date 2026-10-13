@@ -5,55 +5,52 @@ This repository contains
 - the tools to develop those skills
 - the description of the agentic development flow designed to develop the CRISTAL-iSE framework.
 
-Entirely based on the engineering, productivity and in-progress skills of Matt Pocock: https://github.com/mattpocock/skills
+Entirely based on the engineering, productivity skills of Matt Pocock with extra quality steps proposed by Uncle Bob. 
+https://github.com/mattpocock/skills
+https://github.com/unclebob/swarm-forge/blob/six-pack/README.md
 
-## How to set up these skills for a new or existing repository
+## Main flow of skills triggered by the user
+
+The main purpose is to define the smallest possible spec to implement. The process below minimises human review by doing it after the spec was implemented. To keep the review quick and effective, it is important to keep the complexity of the spec low. Use /wayfinder if you are unsure how to define the required spec.
+
+### Planning and design
+
+1. /wayfinder – optional
+2. /grill-with-docs
+3. /to-spec
+4. /to-tickets
+
+### Implementation of spec
+
+1. create the integration branch for spec
+2. /implement-ticket 
+3. manual merge to spec branch (this could be automated – see implement-spec of Matt)
+4. goto step 2 for all reaming tickets (this could be automated – see implement-spec of Matt)
+5. /codebase-design - create a ticket from design review and link it with spec
+6. /implement-ticket
+7. design review by the developer – Uncle Bob solution: https://github.com/unclebob/uml-viewer
+   - Ask agent to produce diagrams i.e. plantuml class, sequence, activity. Use the This requires experience to see the issue without reviewing the code changes line-by-line
+8. if there are any issues with the design or implementation
+    - ask agent to create a plan
+    - create a ticket wth the plan and link it with the spec 
+    - /implement-ticket
+9. /retro – check the report and decide on the required actions. It requires that all steps above were executed in the same session
+
+NOTE: it might be useful to do /retro after each /implement-ticket and save the report in docs/retro
+
+## SKILL: implement-ticket 
+
+Implements a single ticket from the issue tracker. Fetches the ticket, uses TDD at pre-agreed seams, performs quality steps based on static analysis, coverage report and mutation testing, performs a code review and commits each step to the current branch.
+
+## Set up these skills for a new or existing repository
 
 ### First time
 - `npx skills@latest add mattpocock/skills`
 - `npx skills@latest add cristal-ise/skills`
+- extend the build process with test coverage, static code analysis and mutation testing.
 - prompt `/setup-matt-pocock-skills`
-- add test coverage, static code analysis and mutation testing to the project
 - run a prompt similar to this: 
     - `/writing-for-agents create docs/agents/quality.md for the usage of codenarc, jacoco and pitest, and reference it in Agents.md`
 
 ### Update
 - `npx skills@latest update`
-
-
---------------------------------------------------------------------
-
-Notes to myself
-
-- Designing clear the **trajectory** of the context window keeps the coding agent focused on the task at hand, i.e. it will not get confused to lose direction.
-- **Deep modules* is good for agentic coding, intuitive public interface with complex functionalities
-
-
-**Proposed complete process**
-
-It is a combination of Matt Pocock's skills with minor adjustments, extended with Uncle Bob.
-
-1. grill-with-docs or wayfinder
-    - CONTEXT.md and ADRs are created/updated
-2. to-spec
-3. to-tickets
-The steps below could be an AFK loop implementing all the tickets identified during step 1, but unfortunately, there is one manual step.
-4. implement one ticket with tdd
-5. code-review of the current branch
-6. implement all the findings of code review and commit changes
-7. resolve all the findings of static code analysis `./gradlew codenarcMain` and commit changes
-    - see codeNarc rules and their configurations in `config/codenarc`
-    - the size and cyclomatic complexity (CRAP metric does not work yet) thresholds might tigger major refactoring
-    - in case of any major refactoring was done, check JaCoCO coverage (step 7)
-8. use JaCoCo test coverage report `./gradlew clean test` to achieve +95% coverage  and commit changes
-9. consolidate tests: find duplicates and common bases to reduce redundancy. Make sure to
-    - meet all **Acceptance Criteria** specified in the Specification and in the actual Issue.
-    - keep **Test coverage** of branch and instruction for each package
-10. use PITest mutation testing report `./gradlew pitest` to achieve +95% coverage and commit changes
-    - This could be a loop and/or use subagents
-11. MANUAL: architecture review of the code and changes. Ask agent to produce diagrams (e.g. plantuml class, sequence, activity, ...) if needed to help to decide if there are any issues with the design or implementation. This requires experience to see the issue without reviewing the code changes line-by-line
-12. if there are any issues with the design or implementation, create a plan to address them
-    1. Implement the plan spawning a subagent for each step described in the plan. Commit changes
-    2. Update ADRs and CONTEXT.md if needed and commit changes
-    3. Go back to step 5
-13. push to origin, create PR, run CI, if green merge to develop, run CI.
