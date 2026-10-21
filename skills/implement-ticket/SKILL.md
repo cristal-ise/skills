@@ -7,7 +7,7 @@ description: "Implement one ticket without user intervention."
 Do not deviate from this sequence.
 
 1. Check the current branch and stop in case anything is changed or new and ask the user to resolve it.
-2. Check if the current branch is already named spec. If not, switch to develop and create a new branch named after the spec following the gitflow convention. The name shall also include the ticket or spec number.
+2. Check if the current branch is named after the ticket being implemented. Stop and ask the user to switch to the correct branch.
 3. Spawn a subagent named `tdd-developer` to implement the given ticket. Use /tdd where possible, at pre-agreed seams. Run typechecking and tests regularly.
 4. Wait for `tdd-developer` to complete before continuing, then commit changes.
 5. /code-review changes of the last commit save it to docs/reviews
