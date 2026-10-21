@@ -19,21 +19,10 @@ Run `/implement-ticket` for each ticket in its own worktree, one at a time.
 ## Steps
 
 1. Read the spec and tickets to understand the task graph.
-
-2. Use an **exploration subagent** to conduct any exploration required by the tickets - relevant codebase files or external documentation. The exploration subagent saves its markdown notes in the `docs/explorations` directory, accessible by all future runs. This lets `/implement-ticket` focus on implementation rather than exploration.
-
-3. Create the integration branch named after the spec.
-
-4. Pick one ticket from the frontier, create a worktree on a branch named after the ticket, based on the integration branch. Run `/implement-ticket` in that worktree.
-
-5. Once the `/implement-ticket` run completes, merge its branch to the integration branch with a **merger subagent**.
-
-6. If the issue tracker closes work through PRs, or the user asks for one, check if a draft PR already exists. If not, open one after the first merge and instruct the PR to close the spec and its tickets.
-
-7. Resolve the ticket the way the issue tracker closes work.
-
-8. If the **frontier** still has available tickets, go back to step 4.
-
-9. If a draft PR exists, mark it ready for review. Otherwise, resolve each ticket the way the issue tracker closes work, and report the integration branch.
-
-10. Clean up all ticket worktrees.
+2. Create the integration branch named after the spec.
+3. Pick one ticket from the frontier, create a worktree on a branch named after the ticket, based on the integration branch. Run `/implement-ticket` in that worktree.
+4. Once the `/implement-ticket` run completes, merge its branch to the integration branch with a **merger subagent**.
+5. If the issue tracker closes work through PRs, or the user asks for one, check if a draft PR already exists. If not, open one after the first merge and instruct the PR to close the spec and its tickets.
+6. If the **frontier** still has available tickets, go back to step 3.
+7. If a draft PR exists, mark it ready for review, and report the integration branch.
+8. Clean up all ticket worktrees.
