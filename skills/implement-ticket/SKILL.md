@@ -13,7 +13,7 @@ Do not deviate from this sequence.
 3. Spawn a subagent named `tdd-developer` to implement the given ticket. Use /tdd where possible, at pre-agreed seams. Run typechecking and tests regularly.
 4. Wait for `tdd-developer` to complete before continuing, then commit changes.
 5. /code-review changes of the last commit save it to docs/reviews
-6. Spawn a subagent named `review-developer` to implement all the findings of code review using /tdd.
+6. Spawn a subagent named `review-developer` to implement all the findings of code-review using /tdd.
 7. Wait for `review-developer` to complete before continuing, then commit changes.
 8. Spawn a subagent named `static-fixer` to resolve all the findings of static code analysis.
 9. Wait for `static-fixer` to complete before continuing, then commit changes.
