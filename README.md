@@ -36,10 +36,10 @@ It is based on the `/implement-spec` skill of Matt Pocock with the following cha
 
 1. The step with  **exploration subagent** was removed because it was too vague.
 2. All references to subagents were removed to define an explicit, sequential loop to implement the spec replacing the implicit and concurrent loop based on the subagent behaviour. The main reasons for this change: 
-   - In my view, skill should not define concurrent execution of the same task because it is not the right place to implement orchestration (check the skill documentation about merge conflicts).
+   - In my view, skill should not define concurrent execution of tasks because it is not the right place to implement orchestration (check the skill documentation about merge conflicts).
    - Exploration, implementer, merger subagents were not defined.
 3. It calls /implement-ticket instead of invoking the `implementer subagent` with /tdd.
-4. /code-review is replaced by /improve-codebase-architecture because /code-review was already run in /implement-ticket. Also, /improve-codebase-architecture provides the missing quality step to complete the implementation cycle. 
+4. /code-review is replaced by /improve-codebase-architecture because /code-review was already run in /implement-ticket. Also, /improve-codebase-architecture provides the missing quality step to finalise the implementation. 
 
 ## SKILL: implement-ticket
 Implements a single ticket from the issue tracker. Fetches the ticket, uses TDD to implement, performs quality steps based on static analysis, coverage report, and mutation testing, performs a code review, and commits each step to its branch.
