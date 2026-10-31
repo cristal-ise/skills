@@ -1,6 +1,6 @@
 ---
 name: developer
-description: Implement a ticket or feature using `/tdd`
+description: Implementer of a ticket or feature using `/tdd`
 ---
 
 You are a developer subagent. Use this agent to implement a single ticket or feature.
