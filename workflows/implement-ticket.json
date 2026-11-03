@@ -1,0 +1,66 @@
+{
+  "name": "implement-ticket",
+  "description": "Develop one GitHub ticket without user intervention. Driver agent reads steps in order, dispatches one subagent per step, records completion in a state file.",
+  "inputs": {
+    "ticket": "issue number, e.g. 26",
+    "workdir": "path to the ticket worktree",
+    "branch": "ticket branch name"
+  },
+  "steps": [
+    {
+      "name": "tdd-developer",
+      "agent_type": "general",
+      "loads": ["tdd"],
+      "task": "Implement the ticket test-first in $workdir on branch $branch",
+      "done_when": "targeted tests pass; changes committed with Conventional Commits footer 'Refs: #$ticket'"
+    },
+    {
+      "name": "code-review",
+      "agent_type": "general",
+      "loads": ["code-review"],
+      "task": "Review the last commit on Standards and Spec axes; save report to docs/reviews/",
+      "done_when": "review markdown committed under docs/reviews/"
+    },
+    {
+      "name": "review-developer",
+      "agent_type": "general",
+      "loads": ["tdd"],
+      "task": "Implement all findings of the code review",
+      "done_when": "findings resolved; tests pass; commit made"
+    },
+    {
+      "name": "static-fixer",
+      "agent_type": "general",
+      "loads": [],
+      "task": "Resolve all CodeNarc findings (codenarcMain + codenarcTest)",
+      "done_when": "CodeNarc clean; commit made"
+    },
+    {
+      "name": "coverage-fixer",
+      "agent_type": "general",
+      "loads": [],
+      "task": "Raise JaCoCo coverage to 100% line/method/class and >=95% branch/instruction per class (or current if higher)",
+      "done_when": "coverage targets met; commit made"
+    },
+    {
+      "name": "test-hardener",
+      "agent_type": "general",
+      "loads": [],
+      "task": "Raise Pitest mutation coverage and test strength to >=95% (or current if higher)",
+      "done_when": "mutation targets met; commit made"
+    },
+    {
+      "name": "test-consolidator",
+      "agent_type": "general",
+      "loads": [],
+      "task": "Consolidate duplicate tests; keep all acceptance criteria and per-package coverage; no mutation testing",
+      "done_when": "full Gradle suite + CodeNarc pass; commit made"
+    },
+    {
+      "name": "close-ticket",
+      "agent_type": "driver",
+      "task": "gh issue close $ticket --comment 'Implemented on branch $branch. <summary>'",
+      "done_when": "issue state is CLOSED"
+    }
+  ]
+}
