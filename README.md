@@ -24,12 +24,13 @@ The main goal is to define the smallest possible spec to implement. The process 
 ### Implementation session
 
 1. /implement-loop spec-reference
-2. /improve-codebase-architecture
-3. /grill-with-docs <reference to review html>
-4. /to-tickets - link the tickets with the original spec
-5. /implement-loop spec-reference
-6. /pr
-7. /retro – check the report and decide on the required actions.
+2. /pr create
+3. /improve-codebase-architecture
+4. /grill-with-docs <reference to review html>
+5. /to-tickets - link the tickets with the original spec
+6. /implement-loop spec-reference
+7. /pr update
+8. /retro – check the report and decide on the required actions.
 
 ## SKILL: implement-loop
 Implements a full spec sequentially by resolving its tickets as a task graph. Creates a temporary integration branch, implements each ticket in its own worktree using `/implement-ticket`, merges each result back. Continues until all tickets are resolved, then cleans up all branches and worktrees.
